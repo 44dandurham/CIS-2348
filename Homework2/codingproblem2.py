@@ -8,8 +8,10 @@ def convert_date(date_str):
 
 current_date = datetime.now()
 
-while True:
-    date_input = input()
+with open('inputDates.txt', 'r') as file:
+    for date_input in file:
+        date_input = date_input.strip()
+        
     if date_input == '-1':
         break
 
