@@ -8,12 +8,12 @@ def convert_date(date_str):
 
 current_date = datetime.now()
 
-with open('inputDates.txt', 'r') as file:
-    for date_input in file:
+with open('inputDates.txt', 'r') as input_file, open('parsedDates.txt', 'w') as output_file:
+    for date_input in input_file:
         date_input = date_input.strip()
         
-    if date_input == '-1':
-        break
+        if date_input == '-1':
+            break
 
     month = date_input.find(" ")
     comma = date_input.find(",")
@@ -21,6 +21,6 @@ with open('inputDates.txt', 'r') as file:
 
     if month != -1 and comma != -1 and space != -1:
         format_date = convert_date(date_input)
-        date = datetime.strptime(date_input, "%B %d, %Y")
+        date = datetime.strptime(date_input, "%-m/%d/%Y")
         if date <= current_date:
-            print(format_date)
+            output_file.write(format_date)
